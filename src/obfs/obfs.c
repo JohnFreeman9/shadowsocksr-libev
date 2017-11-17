@@ -183,7 +183,7 @@ obfs_class *new_obfs_class(char *plugin_name) {
         plugin->new_obfs = auth_chain_a_new_obfs;
         plugin->get_overhead = auth_chain_a_get_overhead;
         plugin->get_server_info = get_server_info;
-        plugin->set_server_info = set_server_info;  // maybe is auth_chain_a_set_server_info ?  (--Akkariiin)
+        plugin->set_server_info = auth_chain_a_set_server_info;
         plugin->dispose = auth_chain_a_dispose;
 
         plugin->client_pre_encrypt = auth_chain_a_client_pre_encrypt;
@@ -230,6 +230,36 @@ obfs_class *new_obfs_class(char *plugin_name) {
         plugin->get_server_info = get_server_info;
         plugin->set_server_info = auth_chain_d_set_server_info;
         plugin->dispose = auth_chain_d_dispose;
+
+        plugin->client_pre_encrypt = auth_chain_a_client_pre_encrypt;
+        plugin->client_post_decrypt = auth_chain_a_client_post_decrypt;
+        plugin->client_udp_pre_encrypt = auth_chain_a_client_udp_pre_encrypt;
+        plugin->client_udp_post_decrypt = auth_chain_a_client_udp_post_decrypt;
+
+        return plugin;
+    } else if (strcmp(plugin_name, "auth_chain_e") == 0) {
+        obfs_class *plugin = (obfs_class *) malloc(sizeof(obfs_class));
+        plugin->init_data = auth_chain_e_init_data;
+        plugin->new_obfs = auth_chain_e_new_obfs;
+        plugin->get_overhead = auth_chain_e_get_overhead;
+        plugin->get_server_info = get_server_info;
+        plugin->set_server_info = auth_chain_e_set_server_info;
+        plugin->dispose = auth_chain_e_dispose;
+
+        plugin->client_pre_encrypt = auth_chain_a_client_pre_encrypt;
+        plugin->client_post_decrypt = auth_chain_a_client_post_decrypt;
+        plugin->client_udp_pre_encrypt = auth_chain_a_client_udp_pre_encrypt;
+        plugin->client_udp_post_decrypt = auth_chain_a_client_udp_post_decrypt;
+
+        return plugin;
+    } else if (strcmp(plugin_name, "auth_chain_f") == 0) {
+        obfs_class *plugin = (obfs_class *) malloc(sizeof(obfs_class));
+        plugin->init_data = auth_chain_e_init_data;
+        plugin->new_obfs = auth_chain_f_new_obfs;
+        plugin->get_overhead = auth_chain_f_get_overhead;
+        plugin->get_server_info = get_server_info;
+        plugin->set_server_info = auth_chain_f_set_server_info;
+        plugin->dispose = auth_chain_f_dispose;
 
         plugin->client_pre_encrypt = auth_chain_a_client_pre_encrypt;
         plugin->client_post_decrypt = auth_chain_a_client_post_decrypt;
